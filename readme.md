@@ -35,6 +35,8 @@ The statements are not accepted by Carto, so they should be added surrounded by 
     }
     */
 
+If you want an actual comment, begin the line with a // comment and no spaces
+
 Enter your code into the Carto editor, and <strong>scroll the code editor so your code is in view</strong>
 
 3) If you have the plugin installed, click the link icon above the usual Teaser / Click menu. If you'd rather not install a plugin, open TileMill inside your browser, on http://localhost:20009. Open the JavaScript console and paste networkpoll.js in directly.
