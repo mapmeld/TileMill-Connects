@@ -4,10 +4,13 @@ var connectionopen = 0;
 var cstreets = { };
 var mainindex = 0;
 
-function runNetworkCheck(){
+$.runNetworkCheck = function(){
+  setTimeout(function(){
+    $("#drawer").removeClass("active");
+  }, 500);
   $('#modal').html('  <a href="javascript:void(0);" onclick="$(\'#modal\').removeClass(\'active\');" class="close"><span class="icon reverse close">Close</span></a>  <div class="content"><pre class="scrolling">CSV Plugin: could not detect column headers with the name of wkt, geojson, x/y, or latitude/longitude - this is required for reading geometry data</pre></div>');
   $('#modal').addClass('active');
-  $('#modal .content').html('<pre class="scrolling">Searching for connects statements</pre>');
+  $('#modal .content').html('<pre class="scrolling">Searching for connects statements\n\nMake sure connect statements are visible in the code editor.</pre>');
   codelines = $(".CodeMirror-lines pre");
 
   for(var i=3;i<codelines.length;i++){
@@ -80,22 +83,15 @@ $.processOSM = function(data){
           console.log("matching point");
           if(data[s].name){
             cstreets[ connectsearch[ mainindex ].wayid ].push(data[s].name);
-            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].name + ' connects to ' + connectsearch[ mainindex ].name + '. <a href="javascript:void(0);" onclick="writeMSS(' + connectsearch[ mainindex ].wayid + ')">Read code</a> for ' + cstreets[ connectsearch[ mainindex ].wayid ].length + ' connections.</pre>');
+            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].name + ' connects to ' + connectsearch[ mainindex ].name + '. <a href="javascript:void(0);" onclick="writeMSS(' + connectsearch[ mainindex ].wayid + ')">View MSS</a> for all connections.</pre>');
           }
           else{
             cstreets[ connectsearch[ mainindex ].wayid ].push("wayid:" + data[s].wayid);
-            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].wayid + ' connects to ' + connectsearch[ mainindex ].name + '. <a href="javascript:void(0);" onclick="writeMSS(' + connectsearch[ mainindex ].wayid + ')">Read code</a> for ' + cstreets[ connectsearch[ mainindex ].wayid ].length + ' connections.</pre>');            
+            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].wayid + ' connects to ' + connectsearch[ mainindex ].name + '. <a href="javascript:void(0);" onclick="writeMSS(' + connectsearch[ mainindex ].wayid + ')">View MSS</a> for all connections.</pre>');            
           }
           break;
         }
       }
-      //for(var pt=0;pt<data[s].line.length;pt++){
-        //if(mainlls.indexOf( data[s].line[pt] ) > -1){
-        //  // found a matching point
-        //  console.log("matching point in " + data[s].name );
-        //  break;
-        //}
-      //}
     }
   }
   
@@ -208,23 +204,17 @@ var writeMSS = function(wayid){
 view = Backbone.View.extend();
 
 view.prototype.events = {
-    'change select': 'update',
-    'keyup input': 'update',
-    'keyup textarea': 'update',
-    'change input': 'update',
-    'change textarea': 'update'
 };
 
 view.prototype.initialize = function(options) {
-    _(this).bindAll('render', 'attach', 'update');
-    this.render().attach();
+    //_(this).bindAll('render', 'attach', 'update');
+    //this.render().attach();
 };
 
 view.prototype.render = function() {
-    if (this.$('.tooltips').size()) return this;
-    this.$('.content').html(templates.Tintplates(this.model));
-    runNetworkCheck();
-    return this;
+    //if (this.$('.tooltips').size()) return this;
+    //this.$('.content').html(templates.Tintplates(this.model));
+    //return this;
 };
 
 view.prototype.attach = function() {
@@ -237,7 +227,7 @@ view.prototype.update = function(ev) {
 views.Project.augment({
     events: { 'click a[href=#connects]': 'connects' },
     connects: function() {
-        new view({ model: this.model, el:$('#drawer') })
+        $.runNetworkCheck()
     },
     render: function(p) {
         p.call(this);
