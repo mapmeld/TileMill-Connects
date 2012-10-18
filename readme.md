@@ -1,12 +1,14 @@
 <h3>TileMill Connects</h3>
 
-Suppose you've got some stores in three locations in the city, and would like to highlight the roads leading up to them.
+TileMill-Connects is partly a plugin, partly a hack to leverage TileMill's Carto editor and OpenStreetMap data to make it possible to style road networks.
 
-Or 
+<h4>How could it be used?</h4>
+
+Suppose you've got some stores in three locations in the city, and would like to highlight the roads leading up to them.
 
 Or you're an urban planner studying quirks in road networks.
 
-TileMill-Connects is partly a plugin, partly a hack to leverage TileMill's Carto editor and OpenStreetMap data to make it possible to style road networks.
+Or you want to show which parts of the city have access to fresh fruits and vegetables
 
 <h3>Demo</h3>
 
