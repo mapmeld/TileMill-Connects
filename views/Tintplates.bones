@@ -83,11 +83,11 @@ $.processOSM = function(data){
           console.log("matching point");
           if(data[s].name){
             cstreets[ connectsearch[ mainindex ].wayid ].push(data[s].name);
-            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].name + ' connects to ' + connectsearch[ mainindex ].name + '. <a href="javascript:void(0);" onclick="writeMSS(' + connectsearch[ mainindex ].wayid + ')">View MSS</a> for all connections.</pre>');
+            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].name + ' connects to ' + connectsearch[ mainindex ].name + '. <a style="text-decoration:underline;" href="javascript:void(0);" onclick="$.writeMSS(' + connectsearch[ mainindex ].wayid + ')">View MSS</a> for all connections.</pre>');
           }
           else{
             cstreets[ connectsearch[ mainindex ].wayid ].push("wayid:" + data[s].wayid);
-            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].wayid + ' connects to ' + connectsearch[ mainindex ].name + '. <a href="javascript:void(0);" onclick="writeMSS(' + connectsearch[ mainindex ].wayid + ')">View MSS</a> for all connections.</pre>');            
+            $('#modal .content').html('<pre class="scrolling">Found ' + data[s].wayid + ' connects to ' + connectsearch[ mainindex ].name + '. <a style="text-decoration:underline;" href="javascript:void(0);" onclick="$.writeMSS(' + connectsearch[ mainindex ].wayid + ')">View MSS</a> for all connections.</pre>');            
           }
           break;
         }
@@ -174,7 +174,7 @@ var processSt = function(index){
 };
 
 // Write MSS for connected streets
-var writeMSS = function(wayid){
+$.writeMSS = function(wayid){
   var index;
   var outcode = '';
   $.each(cstreets, function(wayid){
