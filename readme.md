@@ -22,6 +22,8 @@ The statements are not accepted by Carto, so they should be added surrounded by 
 
     /*
     #maconga.highway[ connects = "High Street, Macon, GA" ] {
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/mapmeld/TileMill-Connects.svg)](https://greenkeeper.io/)
         line-color: #f00;
         line-width: 4;
     }
